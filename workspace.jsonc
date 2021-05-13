@@ -1,0 +1,91 @@
+/**
+ * this is the main configuration file of your bit workspace.
+ * for full documentation, please see: https://harmony-docs.bit.dev/workspace/configurations
+ **/{
+  "$schema": "https://static.bit.dev/teambit/schemas/schema.json",
+  /**
+   * main configuration of the Bit workspace.
+   **/
+  "teambit.workspace/workspace": {
+    /**
+     * the name of the component workspace. used for development purposes.
+     **/
+    "name": "components",
+    /**
+     * set the icon to be shown on the Bit server.
+     **/
+    "icon": "https://static.bit.dev/bit-logo.svg",
+    /**
+     * default directory for all components in workspace, the following placeholders are available:
+     * name - component name includes namespace, e.g. 'ui/button'.
+     * scopeId - full scope-id includes the owner, e.g. 'teambit.compilation'.
+     * scope - scope name only, e.g. 'compilation'.
+     * owner - owner name in bit.dev, e.g. 'teambit'.
+     **/
+    "defaultDirectory": "src/components",
+    /**
+     * default scope for all components in workspace.
+     **/
+    "defaultScope": "scahalan.basic"
+  },
+  /**
+   * main configuration for component dependency resolution.
+   **/
+  "teambit.dependencies/dependency-resolver": {
+    /**
+     * choose the package manager for Bit to use. you can choose between 'yarn', 'pnpm'
+     */
+    "packageManager": "teambit.dependencies/pnpm",
+    "policy": {
+      "dependencies": {
+        
+      },
+      "peerDependencies": {},
+      "devDependencies": {
+      }
+    }
+  },
+  /**
+   * workspace variants allow to set different subsets of configuration for components in your workspace.
+   * this is extremely useful for upgrading, aligning and building components with a
+   * new set of dependencies.
+   **/
+  "teambit.workspace/variants": {
+    /**
+     * "*" is a special rule which applied on all components in the workspace.
+     **/
+    "*": {
+      /**
+       * uncomment to apply the react environment on all components.
+       **/
+      // "teambit.react/react": { }
+      "extensions/aspect": {}
+    },
+    "extensions/aspect": {
+      "teambit.harmony/aspect": {},
+      "teambit.dependencies/dependency-resolver": {
+        "policy": {
+          "dependencies": {
+            "@hot-loader/react-dom": "17.0.1",
+            // "ast-types": "0.14.2",
+            // "react": "17.0.2",
+            // "react-docgen":  "5.0.0",
+            // "@jutro/app": "6.0.0",
+            // "@jutro/theme": "6.0.0",
+            // "@jutro/overrides": "6.0.0",
+            // "@jutro/build-tools": "6.0.0",
+            // "@jutro/toolset-compilers": "6.0.0",
+            "lodash": "4.17.21",
+            "loader-utils": "2.0.0",
+            "webpack": "5.37.0",
+            "json5-loader": "^4.0.1"
+            // "events": "3.3.0",
+            // "node-polyfill-webpack-plugin": "1.1.1",
+            // "os-browserify": "0.3.0",
+            // "console-browserify": "1.2.0"
+          }
+        }
+      }
+    }
+  }
+}
